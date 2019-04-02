@@ -27,19 +27,19 @@ const upload = multer({
 });
 
 // Create a scheme for items in the museum: a title and a path to an image.
-const itemSchema = new mongoose.Schema({
+const nameSchema = new mongoose.Schema({
   name: String,
   type: String,
 });
 
 // Create a model for items in the museum.
-const Item = mongoose.model('Item', itemSchema);
+const Name = mongoose.model('Name', nameSchema);
 
 //don't need that file uploader bit
 
 // Create a new item. Takes name and what type of name it is.
 app.post('/api/items', async (req, res) => {
-  const item = new Item({
+  const item = new Name({
     name: req.body.name,
     type: req.body.type,
   });
@@ -55,7 +55,7 @@ app.post('/api/items', async (req, res) => {
 // Get a list of all of the items in the museum.
 app.get('/api/items', async (req, res) => {
   try {
-    let items = await Item.find();
+    let items = await Name.find();
     res.send(items);
   } catch (error) {
     console.log(error);
@@ -66,7 +66,7 @@ app.get('/api/items', async (req, res) => {
 //deletes stuff. you know. like the delete method would
 app.delete('/api/items/:id', async (req, res) => {
   try {
-    await Item.deleteOne({
+    await Name.deleteOne({
       _id: req.params.id
     });
     res.sendStatus(200);
@@ -79,7 +79,7 @@ app.delete('/api/items/:id', async (req, res) => {
 //update. title or description. or both.
 app.put('/api/items/:id', async (req, res) => {
   try {
-    item = await Item.findOne({
+    item = await Name.findOne({
       _id: req.params.id
     });
     item.name = req.body.name;
