@@ -81,7 +81,7 @@ var app = new Vue({
       //console.log(callIdx);
       //male or female first name
       //false = female, true = male
-      if (this.gender) {
+      if (this.gender === "true") {
         if (maleNameLen > 0) {
           fname = this.MaleNames[maleIdx].name;
         }
