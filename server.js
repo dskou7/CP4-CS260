@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 const mongoose = require('mongoose');
 
